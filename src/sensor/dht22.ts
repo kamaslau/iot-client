@@ -2,6 +2,8 @@ import sensor from 'node-dht-sensor'
 
 const read = async () => {
 	const result = {
+    data: undefined,
+    message: undefined,
 		time: Date.now()
 	}
 
