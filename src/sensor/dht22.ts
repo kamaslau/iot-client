@@ -12,7 +12,7 @@ interface sensorResponse {
 
 const read = async () => {
 	const result: sensorResponse = {
-		time: Date.toString(),
+		time: new Date().toLocaleString(),
 		timestamp: Date.now()
 	}
 
