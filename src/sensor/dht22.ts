@@ -1,14 +1,22 @@
 import sensor from 'node-dht-sensor'
 
+interface sensorResponse {
+  data?: {
+    temp: number
+    hum?: number
+  }
+  message?: string
+  time: number
+}
+
 const read = async () => {
-	const result = {
-    data: undefined,
-    message: undefined,
-		time: Date.now()
+	const result: sensorResponse = {
+		time: Date.now() // 当前UNIX时间戳
 	}
 
 	try {
 		const res = await sensor.read(22, 4);
+    console.log('sensor.read res: ', res)
 
 		const temp = res.temperature.toFixed(2)
 		const hum = res.humidity.toFixed(2)
