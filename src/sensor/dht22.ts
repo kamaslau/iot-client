@@ -1,6 +1,6 @@
-const sensor = require("node-dht-sensor").promises;
+import sensor from 'node-dht-sensor'
 
-async function exec() {
+const read = async () => {
 	const result = {
 		time: Date.now()
 	}
@@ -28,4 +28,6 @@ async function exec() {
 	return result
 }
 
-exec();
+export default {
+  read
+}

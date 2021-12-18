@@ -1,5 +1,35 @@
 {
+  "name": "iot-client",
+  "license": "UNLICENSED",
+  "private": true,
+  "version": "0.0.1",
+  "description": "物联网传感器数据汇总与通信客户端",
+  "author": {
+    "name": "Lau, Kamas",
+    "email": "kamaslau@outlook.com"
+  },
+  "engines": {
+    "node": "^16 || >=16"
+  },
+  "main": "dist/app.js",
+  "scripts": {
+    "dev": "cross-env nodemon",
+    "format": "ts-standard --fix src/**/*.ts",
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
   "dependencies": {
+    "dotenv": "^10.0",
+    "node-cron": "^3",
+    "node-fetch": "^3",
     "node-dht-sensor": "^0.4"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "latest",
+    "cross-env": "latest",
+    "nodemon": "latest",
+    "ts-node": "latest",
+    "ts-standard": "latest",
+    "typescript": "latest"
   }
 }
