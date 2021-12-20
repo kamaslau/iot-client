@@ -17,10 +17,13 @@ const consolePrefix = '⏱ cron job: '
 const reportSensor = async (): Promise<void> => {
   const readings = await dht.read(11, 4)
 
-  if (readings.message?.length > 0) return 
+  if (readings.message?.length > 0) return
 
-  const params = new URLSearchParams({ ...readings.data, timestamp: readings.timestamp })
+  const params = { content: JSON.stringify({ ...readings.data, timestamp: readings.timestamp }) }
   console.log('params: ', params)
+
+  const body = new URLSearchParams().toString()
+  console.log('body: ', body)
 
   let result: any = null
 
@@ -29,7 +32,7 @@ const reportSensor = async (): Promise<void> => {
       'https://api.liuyajie.com/sensor_record',
       {
         method: 'post',
-        body: params,
+        body,
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -43,8 +46,6 @@ const reportSensor = async (): Promise<void> => {
   } catch (error) {
     console.error('reportSensor error: ', error)
   }
-
-  console.log('reportSensor result: ', result)
 }
 
 /**
