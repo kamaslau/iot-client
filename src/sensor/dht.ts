@@ -10,7 +10,7 @@ interface sensorResponse {
   timestamp: number // UNIX时间戳
 }
 
-const read11 = () => {
+const read11 = (): any => {
 	const result: sensorResponse = {
 		time: new Date().toLocaleString(),
 		timestamp: Date.now()
@@ -19,25 +19,25 @@ const read11 = () => {
 	try {
 		sensor.read(11, 4, (err, temperature, humidity) => {
 			if (!err) {
+				console.log(`temp: ${temperature}°C, humidity: ${humidity}%`);
+
 				result.data = {
 					temp: temperature, hum: humidity
 				}
-
-				console.log(`temp: ${temperature}°C, humidity: ${humidity}%`);
 			} else {
 				console.error("Failed to read sensor data: ", err);
 
 				result.message = 'Failed to read sensor data'		
 			}
+
+			console.log(result)
+			return result
 		});
 	} catch (err) {
 		console.error("Failed to read sensor data: ", err);
 
 		result.message = 'Failed to read sensor data'
 	}
-
-	console.log(result)
-	return result
 }
 
 const read11Async = async () => {

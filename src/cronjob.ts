@@ -7,8 +7,42 @@ import { getTimeString } from './utils'
 import { dht } from './sensor'
 import nodeCron from 'node-cron'
 
+import fetch from 'node-fetch'
+import { URLSearchParams } from 'url'
+
 // 控制台输出前缀
 const consolePrefix = '⏱ cron job: '
+
+// 读取传感器数据
+const reportSensor = async () => {
+  const readings = dht.read11()
+
+  if (readings.message?.length > 0) return 
+
+  const params = { ...readings.data, timestamp: readings.timestamp }
+
+  let result: any = null
+
+  try {
+    result = await fetch(
+      'https://api.liuyajie.com/sensor_record',
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        method: 'POST',
+        body: new URLSearchParams(params).toString()
+      }
+    ).then((res) => res.json())
+  } catch (error) {
+    console.error('reportSensor error: ', error)
+  }
+
+  console.log('reportSensor result: ', result)
+
+  return result
+}
 
 /**
  * 任务计划
@@ -16,8 +50,7 @@ const consolePrefix = '⏱ cron job: '
 const plans = {
   minutely: async (): Promise<void> => {
     console.log(`${consolePrefix} minutely: `, getTimeString())
-
-    dht.read11()
+    await reportSensor()
   },
   hourly: async (): Promise<void> => {
     console.log(`${consolePrefix} hourly: `, getTimeString())
@@ -30,11 +63,11 @@ const plans = {
 /**
  * 启动所有计划任务
  */
-const startAll = (): void => {
+const startAll = async (): Promise<void> => {
   console.log('\x1b[32m%s\x1b[0m', '⏱ cron job initiated')
 
   try {
-    dht.read11()
+    await reportSensor()
 
     nodeCron.schedule('0 * * * * *', plans.minutely)
     nodeCron.schedule('0 0 * * * *', plans.hourly)
