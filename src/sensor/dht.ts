@@ -18,7 +18,7 @@ const read = async (model = 11, gpio = 4): Promise<any> => {
 
 	try {
 		const res = await sensor.read(model, gpio);
-    console.log('read res: ', res)
+    // console.log('read res: ', res)
 
 		result.data = {
 			temp: res.temperature.toFixed(2),

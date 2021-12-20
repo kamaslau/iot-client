@@ -19,23 +19,27 @@ const reportSensor = async (): Promise<void> => {
 
   if (readings.message?.length > 0) return 
 
-  const params = { ...readings.data, timestamp: readings.timestamp }
+  const params = new URLSearchParams({ ...readings.data, timestamp: readings.timestamp })
   console.log('params: ', params)
 
   let result: any = null
 
   try {
-    result = await fetch(
+    const response = await fetch(
       'https://api.liuyajie.com/sensor_record',
       {
+        method: 'post',
+        body: params,
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        method: 'POST',
-        body: new URLSearchParams(params).toString()
+        }
       }
-    ).then((res) => res.json())
+    )
+
+    result = await response.json()
+
+    console.log(result);
   } catch (error) {
     console.error('reportSensor error: ', error)
   }
