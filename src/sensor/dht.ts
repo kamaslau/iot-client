@@ -30,7 +30,7 @@ const read = (model = 11, gpio = 4): Promise<any> => {
 		result.message = 'Failed to read sensor data'
 	}
 
-	console.log(result)
+	// console.log(result)
 	return result
 }
 
