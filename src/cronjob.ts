@@ -19,11 +19,15 @@ const reportSensor = async (): Promise<void> => {
 
   if (readings.message?.length > 0) return
 
-  const params = { content: JSON.stringify({ ...readings.data, timestamp: readings.timestamp }) }
-  console.log('params: ', params)
+  const params = {
+    sensor_id: 1,
+    timestamp: readings.timestamp,
+    content: JSON.stringify({ ...readings.data })
+  }
+  // console.log('params: ', params)
 
-  const body = new URLSearchParams().toString()
-  console.log('body: ', body)
+  const body = new URLSearchParams(params).toString()
+  // console.log('body: ', body)
 
   let result: any = null
 
@@ -54,7 +58,7 @@ const reportSensor = async (): Promise<void> => {
 const plans = {
   minutely: async (): Promise<void> => {
     console.log(`${consolePrefix} minutely: `, getTimeString())
-    await reportSensor()
+    // await reportSensor() // Dev only: 测试运行
   },
   hourly: async (): Promise<void> => {
     console.log(`${consolePrefix} hourly: `, getTimeString())
