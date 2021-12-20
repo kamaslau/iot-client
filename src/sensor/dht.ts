@@ -1,4 +1,4 @@
-import sensor from 'node-dht-sensor'
+import { promises as sensor} from 'node-dht-sensor'
 
 interface sensorResponse {
   data?: {
@@ -10,58 +10,20 @@ interface sensorResponse {
   timestamp: number // UNIX时间戳
 }
 
-const read11 = (): any => {
+const read = (model = 11, gpio = 4): Promise<any> => {
 	const result: sensorResponse = {
 		time: new Date().toLocaleString(),
 		timestamp: Date.now()
 	}
 
 	try {
-		sensor.read(11, 4, (err, temperature, humidity) => {
-			if (!err) {
-				console.log(`temp: ${temperature}°C, humidity: ${humidity}%`);
+		const res = await sensor.read(model, gpio);
+    console.log('read res: ', res)
 
-				result.data = {
-					temp: temperature, hum: humidity
-				}
-			} else {
-				console.error("Failed to read sensor data: ", err);
-
-				result.message = 'Failed to read sensor data'		
-			}
-
-			console.log(result)
-			return result
-		});
-	} catch (err) {
-		console.error("Failed to read sensor data: ", err);
-
-		result.message = 'Failed to read sensor data'
-	}
-}
-
-const read11Async = async () => {
-	const result: sensorResponse = {
-		time: new Date().toLocaleString(),
-		timestamp: Date.now()
-	}
-
-	try {
-		const res = await sensor.read(11, 4);
-    console.log('sensor.read res: ', res)
-
-		if (res.isValid) {
-			const temp = res.temperature.toFixed(2)
-			const hum = res.humidity.toFixed(2)
-			console.log(
-				`temp: ${ temp }°C, humidity: ${ hum }%`
-			);
-	
-			result.data = {
-				temp, hum
-			}
+		result.data = {
+			temp: res.temperature.toFixed(2),
+			hum: res.humidity.toFixed(2)
 		}
-
 	} catch (err) {
 		console.error("Failed to read sensor data: ", err);
 
@@ -73,5 +35,5 @@ const read11Async = async () => {
 }
 
 export default {
-  read11, read11Async
+  read
 }

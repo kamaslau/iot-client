@@ -15,7 +15,7 @@ const consolePrefix = '⏱ cron job: '
 
 // 读取传感器数据
 const reportSensor = async () => {
-  const readings = dht.read11()
+  const readings = await dht.read()
 
   if (readings.message?.length > 0) return 
 
