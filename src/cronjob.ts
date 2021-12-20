@@ -20,9 +20,7 @@ const reportSensor = async (): Promise<void> => {
   if (readings.message?.length > 0) return
 
   const params = {
-    sensor_id: 1,
-    timestamp: readings.timestamp,
-    content: JSON.stringify({ ...readings.data })
+    content: JSON.stringify({ ...readings.data,timestamp: readings.timestamp,sensor_id:1 })
   }
   // console.log('params: ', params)
 
