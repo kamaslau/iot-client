@@ -10,7 +10,7 @@ interface sensorResponse {
   timestamp: number // UNIX时间戳
 }
 
-const read = (model = 11, gpio = 4): Promise<any> => {
+const read = async (model = 11, gpio = 4): Promise<any> => {
 	const result: sensorResponse = {
 		time: new Date().toLocaleString(),
 		timestamp: Date.now()
