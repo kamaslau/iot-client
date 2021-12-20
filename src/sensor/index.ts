@@ -1,5 +1,5 @@
-import dht22 from './dht22'
+import dht from './dht'
 
 export {
-  dht22
+  dht
 }

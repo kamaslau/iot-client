@@ -4,7 +4,7 @@
  * https://www.npmjs.com/package/node-cron
  */
 import { getTimeString } from './utils'
-import { dht22 } from './sensor'
+import { dht } from './sensor'
 import nodeCron from 'node-cron'
 
 // 控制台输出前缀
@@ -17,7 +17,7 @@ const plans = {
   minutely: async (): Promise<void> => {
     console.log(`${consolePrefix} minutely: `, getTimeString())
 
-    void await dht22.read()
+    dht.read11()
   },
   hourly: async (): Promise<void> => {
     console.log(`${consolePrefix} hourly: `, getTimeString())
@@ -34,6 +34,8 @@ const startAll = (): void => {
   console.log('\x1b[32m%s\x1b[0m', '⏱ cron job initiated')
 
   try {
+    dht.read11()
+
     nodeCron.schedule('0 * * * * *', plans.minutely)
     nodeCron.schedule('0 0 * * * *', plans.hourly)
     nodeCron.schedule('0 0 0 * * *', plans.daily)
