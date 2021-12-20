@@ -14,12 +14,13 @@ import { URLSearchParams } from 'url'
 const consolePrefix = '⏱ cron job: '
 
 // 读取传感器数据
-const reportSensor = async () => {
+const reportSensor = async (): Promise<void> => {
   const readings = await dht.read()
 
   if (readings.message?.length > 0) return 
 
   const params = { ...readings.data, timestamp: readings.timestamp }
+  console.log('params: ', params)
 
   let result: any = null
 
@@ -40,8 +41,6 @@ const reportSensor = async () => {
   }
 
   console.log('reportSensor result: ', result)
-
-  return result
 }
 
 /**
