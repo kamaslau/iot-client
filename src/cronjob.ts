@@ -73,7 +73,7 @@ const reportSensor = async (): Promise<void> => {
  */
 const plans = {
   minutely: async (): Promise<void> => {
-    console.log(`${consolePrefix} minutely: `, getTimeString(), sensor)
+    console.log(`${consolePrefix} minutely: `, getTimeString())
 
     await reportSensor() // Dev only: 测试运行
   },
@@ -89,7 +89,7 @@ const plans = {
  * 启动所有计划任务
  */
 const startAll = async (): Promise<void> => {
-  console.log('\x1b[32m%s\x1b[0m', '⏱ cron job initiated')
+  console.log('\x1b[32m%s\x1b[0m', '⏱ cron job initiated', sensor)
 
   try {
     // await reportSensor() // Dev only: 测试运行
