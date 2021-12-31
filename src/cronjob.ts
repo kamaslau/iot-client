@@ -14,14 +14,12 @@ import { URLSearchParams } from 'url'
 const consolePrefix = '⏱ cron job: '
 
 // 读取传感器数据
-const sensor = (() => {
-  return {
-    id: process.env.SENSOR_ID ?? null,
-    model: process.env.SENSOR_MODEL ? Number(process.env.SENSOR_MODEL) : 11,
-    gpio: process.env.SENSOR_GPIO ? Number(process.env.SENSOR_GPIO): 4,
-    url: process.env.SENSOR_REPORT_URL ?? ''
-  }
-})();
+const sensor = {
+  id: process.env.SENSOR_ID ?? null,
+  model: process.env.SENSOR_MODEL ? Number(process.env.SENSOR_MODEL) : 11,
+  gpio: process.env.SENSOR_GPIO ? Number(process.env.SENSOR_GPIO) : 4,
+  url: process.env.SENSOR_REPORT_URL ?? ''
+}
 
 const reportSensor = async (): Promise<void> => {
   if (sensor.id === null) return

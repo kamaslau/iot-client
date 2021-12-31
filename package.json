@@ -16,10 +16,11 @@
     "dev": "cross-env nodemon",
     "format": "ts-standard --fix src/**/*.ts",
     "build": "tsc",
-    "start": "NODE_ENV=production node dist/app.js"
+    "start": "NODE_ENV=production node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "dotenv": "^10.0",
+    "dotenv": "^10",
     "node-cron": "^3",
     "node-fetch": "^2",
     "node-dht-sensor": "^0.4"
