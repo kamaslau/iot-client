@@ -16,7 +16,7 @@
     "dev": "cross-env nodemon",
     "format": "ts-standard --fix src/**/*.ts",
     "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "NODE_ENV=production node dist/app.js"
   },
   "dependencies": {
     "dotenv": "^10.0",
