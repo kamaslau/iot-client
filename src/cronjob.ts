@@ -15,16 +15,21 @@ const consolePrefix = '⏱ cron job: '
 
 // 读取传感器数据
 const sensor = {
-  id: process.env.SENSOR_ID,
-  model: process.env.SENSOR_MODEL,
-  gpio: process.env.SENSOR_GPIO,
-  url: process.env.SENSOR_REPORT_URL
+  id: process.env.SENSOR_ID ?? null,
+  model: process.env.SENSOR_MODEL ?? 11,
+  gpio: process.env.SENSOR_GPIO ?? 4,
+  url: process.env.SENSOR_REPORT_URL ?? ''
 }
 
 const reportSensor = async (): Promise<void> => {
-  const readings = await dht.read(+sensor.model, +sensor.gpio)
+  if (sensor.id === null) return
 
+  // 读取数据
+  const readings = await dht.read(+sensor.model, +sensor.gpio)
   if (readings.message?.length > 0) return
+
+  // 上报数据
+  if (sensor.url.length === 0) return
 
   const params = {
     content: JSON.stringify({
