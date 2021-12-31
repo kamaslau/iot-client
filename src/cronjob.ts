@@ -73,7 +73,7 @@ const reportSensor = async (): Promise<void> => {
  */
 const plans = {
   minutely: async (): Promise<void> => {
-    console.log(`${consolePrefix} minutely: `, getTimeString())
+    console.log(`${consolePrefix} minutely: `, getTimeString(), sensor)
 
     await reportSensor() // Dev only: 测试运行
   },
