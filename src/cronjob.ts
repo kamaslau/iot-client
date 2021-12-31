@@ -22,7 +22,7 @@ const sensor = {
 }
 
 const reportSensor = async (): Promise<void> => {
-  const readings = await dht.read(sensor.model, sensor.gpio)
+  const readings = await dht.read(+sensor.model, +sensor.gpio)
 
   if (readings.message?.length > 0) return
 
