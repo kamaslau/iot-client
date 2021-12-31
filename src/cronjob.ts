@@ -14,13 +14,24 @@ import { URLSearchParams } from 'url'
 const consolePrefix = '⏱ cron job: '
 
 // 读取传感器数据
+const sensor = {
+  id: process.env.SENSOR_ID,
+  model: process.env.SENSOR_MODEL,
+  gpio: process.env.SENSOR_GPIO,
+  url: process.env.SENSOR_REPORT_URL
+}
+
 const reportSensor = async (): Promise<void> => {
-  const readings = await dht.read(11, 4)
+  const readings = await dht.read(sensor.model, sensor.gpio)
 
   if (readings.message?.length > 0) return
 
   const params = {
-    content: JSON.stringify({ ...readings.data,timestamp: readings.timestamp,sensor_id:1 })
+    content: JSON.stringify({
+      timestamp: readings.timestamp,
+      sensor_id: sensor.id,
+      ...readings.data
+    })
   }
   // console.log('params: ', params)
 
@@ -31,7 +42,7 @@ const reportSensor = async (): Promise<void> => {
 
   try {
     const response = await fetch(
-      'https://api.liuyajie.com/sensor_record',
+      sensor.url,
       {
         method: 'post',
         body,
