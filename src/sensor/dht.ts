@@ -1,37 +1,43 @@
-import { promises as sensor} from 'node-dht-sensor'
+/**
+ * 读取DHT传感器11/22数据
+ * 需要运行在有GPIO接口的设备上
+ */
+import { promises as sensor } from 'node-dht-sensor'
 
 interface sensorResponse {
   data?: {
-    temp: number
-    hum?: number
+    temp: number // 温度
+    hum?: number // 湿度
   }
-  message?: string
-	time: string // 可读日期时间字符串
+  message?: string // 错误信息
+  time: string // 可读的日期时间字符串
   timestamp: number // UNIX时间戳
 }
 
+// 读取传感器数据
 const read = async (model: number = 11, gpio: number = 4): Promise<any> => {
-	const result: sensorResponse = {
-		time: new Date().toLocaleString(),
-		timestamp: Date.now()
-	}
+  const result: sensorResponse = {
+    time: new Date().toLocaleString(),
+    timestamp: Date.now()
+  }
 
-	try {
-		const res = await sensor.read(model, gpio);
-    // console.log('read res: ', res)
+  // 尝试读取传感器数据
+  try {
+    const readings = await sensor.read(model, gpio)
+    // console.log('readings: ', readings)
 
-		result.data = {
-			temp: res.temperature.toFixed(2),
-			hum: res.humidity.toFixed(2)
-		}
-	} catch (err) {
-		console.error("Failed to read sensor data: ", err);
+    result.data = {
+      temp: readings.temperature.toFixed(2),
+      hum: readings.humidity.toFixed(2)
+    }
+  } catch (error) {
+    console.error('读取传感器数据失败: ', error)
 
-		result.message = 'Failed to read sensor data'
-	}
+    result.message = '读取传感器数据失败'
+  }
 
-	// console.log(result)
-	return result
+  // console.log(result)
+  return result
 }
 
 export default {

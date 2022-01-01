@@ -13,16 +13,20 @@ import { URLSearchParams } from 'url'
 // 控制台输出前缀
 const consolePrefix = '⏱ cron job: '
 
-// 读取传感器数据
-const sensor = {
-  id: process.env.SENSOR_ID ?? null,
-  model: process.env.SENSOR_MODEL ? Number(process.env.SENSOR_MODEL) : 11,
-  gpio: process.env.SENSOR_GPIO ? Number(process.env.SENSOR_GPIO) : 4,
-  url: process.env.SENSOR_REPORT_URL ?? ''
+// 传感器类型定义
+interface Sensor {
+  id: string | null
+  model: number
+  gpio: number
+  url: string
 }
 
-const reportSensor = async (): Promise<void> => {
-  if (sensor.id === null) return
+// 传感器
+let sensor: Sensor | null
+
+// 读取传感器数据
+const reportSensor = async (sensor: Sensor): Promise<void> => {
+  // console.log('reportSensor: ', process.env, sensor)
 
   // 读取数据
   const readings = await dht.read(sensor.model, sensor.gpio)
@@ -45,6 +49,7 @@ const reportSensor = async (): Promise<void> => {
 
   let result: any = null
 
+  // 尝试发起网络请求
   try {
     const response = await fetch(
       sensor.url,
@@ -60,7 +65,7 @@ const reportSensor = async (): Promise<void> => {
 
     result = await response.json()
 
-    console.log(result);
+    console.log(result)
   } catch (error) {
     console.error('reportSensor error: ', error)
   }
@@ -73,7 +78,7 @@ const plans = {
   minutely: async (): Promise<void> => {
     console.log(`${consolePrefix} minutely: `, getTimeString())
 
-    await reportSensor() // Dev only: 测试运行
+    if (sensor !== null && sensor.url?.length > 0) await reportSensor(sensor) // Dev only: 测试运行
   },
   hourly: async (): Promise<void> => {
     console.log(`${consolePrefix} hourly: `, getTimeString())
@@ -87,7 +92,13 @@ const plans = {
  * 启动所有计划任务
  */
 const startAll = async (): Promise<void> => {
-  console.log('\x1b[32m%s\x1b[0m', '⏱ cron job initiated', sensor)
+  // 实例化传感器对象
+  sensor = {
+    id: process.env.SENSOR_ID ?? null,
+    model: Number(process.env.SENSOR_MODEL ?? 11),
+    gpio: Number(process.env.SENSOR_GPIO ?? 4),
+    url: process.env.SENSOR_REPORT_URL ?? ''
+  }
 
   try {
     // await reportSensor() // Dev only: 测试运行
@@ -98,6 +109,8 @@ const startAll = async (): Promise<void> => {
   } catch (error) {
     console.error('startAll error: ', error)
   }
+
+  console.log('\x1b[32m%s\x1b[0m', '⏱ cron job initiated', sensor)
 }
 
 export default { startAll }
