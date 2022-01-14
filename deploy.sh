@@ -10,13 +10,18 @@
 npm i -g npm@latest
 
 # Project initiation
+rm -f .env
+cp .env_template .env
+# sudo nano .env # 如有必要，可调整具体配置参数
 npm i
+npm run build
 
 # Process Manager
 npm i -g pm2@latest
 pm2 update
 pm2 delete iot-client
 pm2 start npm --watch --name "iot-client" -- start
+pm2 save
 
 # EOL
 exit 0
