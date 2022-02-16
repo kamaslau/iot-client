@@ -4,5 +4,5 @@
   },
   "exec": "ts-node src/app.ts",
   "ext": "html,js,json,ts,scss",
-  "watch": ["src"]
+  "watch": ["src", ".env"]
 }

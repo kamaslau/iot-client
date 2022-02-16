@@ -6,7 +6,6 @@
 
 # [Initiation] Environment
 # nvm install stable
-# nvm alias default stable
 npm i -g npm@latest
 
 # Project initiation
@@ -17,10 +16,8 @@ npm i
 npm run build
 
 # Process Manager
-npm i -g pm2@latest
-pm2 update
 pm2 delete iot-client
-pm2 start npm --watch --name "iot-client" -- start
+pm2 start npm --watch --name iot-client -- start
 pm2 save
 
 # EOL

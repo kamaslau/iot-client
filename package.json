@@ -20,18 +20,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "dotenv": "^16",
-    "node-cron": "^3",
-    "node-dht-sensor": "^0.4",
-    "node-fetch": "^2"
+    "dotenv": "^16.0.0",
+    "node-cron": "^3.0.0",
+    "node-dht-sensor": "^0.4.3",
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
-    "@tsconfig/node16": "latest",
-    "@types/node": "latest",
-    "cross-env": "latest",
-    "nodemon": "latest",
-    "ts-node": "latest",
-    "ts-standard": "latest",
-    "typescript": "latest"
+    "@tsconfig/node16": "latest"
   }
 }
