@@ -13,8 +13,8 @@ pnpm i
 pnpm build
 
 # Process Manager
-pm2 delete "iot-client"
-pm2 start pnpm --watch --name "iot-client" -- start
+pm2 delete iot-client
+pm2 start npm --watch --name iot-client -- start
 pm2 save
 
 # EOL
