@@ -4,20 +4,17 @@
 # Run with "sh -x deploy.sh"
 # 局域网环境下需注释掉依赖外网连接的命令
 
-# [Initiation] Environment
-# nvm install stable
-npm i -g npm@latest
-
 # Project initiation
-rm -f .env
-cp .env_template .env
+# rm -f .env
+# cp .env_template .env
+# echo 'SOME_YAML_STRING' >> .env  # 如有必要，可追加配置信息
 # sudo nano .env # 如有必要，可调整具体配置参数
-npm i
-npm run build
+pnpm i
+pnpm build
 
 # Process Manager
-pm2 delete iot-client
-pm2 start npm --watch --name iot-client -- start
+pm2 delete "iot-client"
+pm2 start pnpm --watch --name "iot-client" -- start
 pm2 save
 
 # EOL
