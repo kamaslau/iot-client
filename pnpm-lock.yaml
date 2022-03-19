@@ -21,7 +21,7 @@ devDependencies:
 packages:
 
   /@tsconfig/node16/1.0.2:
-    resolution: {integrity: sha1-Qjx3h30Fadsg4fyAiFrEEYMUAQ4=}
+    resolution: {integrity: sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==}
     dev: true
 
   /@types/node/17.0.21:
@@ -34,21 +34,21 @@ packages:
     dev: false
 
   /moment-timezone/0.5.34:
-    resolution: {integrity: sha1-p1k490driPFV01BKk0P3UZ2aQFw=}
+    resolution: {integrity: sha512-3zAEHh2hKUs3EXLESx/wsgw6IQdusOT8Bxm3D9UrHPQR7zlMmzwybC8zHEM1tQ4LJwP7fcxrWr8tuBg05fFCbg==}
     dependencies:
       moment: 2.29.1
     dev: false
 
   /moment/2.29.1:
-    resolution: {integrity: sha1-sr52n6MZQL6e7qZGnAdeNQBvo9M=}
+    resolution: {integrity: sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==}
     dev: false
 
   /node-addon-api/1.7.2:
-    resolution: {integrity: sha1-PfMLlXILU8JOWZSLSVMrZiRE9U0=}
+    resolution: {integrity: sha512-ibPK3iA+vaY1eEjESkQkM0BbCqFOaZMiXRTtdB0u7b4djtY6JnsjvPdUHVMg6xQt3B8fpTTWHI9A+ADjM9frzg==}
     dev: false
 
   /node-cron/3.0.0:
-    resolution: {integrity: sha1-szJSgD5DD5zYWQz4VzjvoUl6lSI=}
+    resolution: {integrity: sha512-DDwIvvuCwrNiaU7HEivFDULcaQualDv7KoNlB/UU1wPW0n1tDEmBJKhEIE6DlF2FuoOHcNbLJ8ITL2Iv/3AWmA==}
     engines: {node: '>=6.0.0'}
     dependencies:
       moment-timezone: 0.5.34
