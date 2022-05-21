@@ -15,16 +15,23 @@ const consolePrefix = '⏱ cron job: '
 
 // 传感器类型定义
 interface Sensor {
-  id: string | null
-  model: number
-  gpio: number
-  url: string
+  id: string | null // 传感器ID
+  model: number // DHT传感器型号（11/22）
+  gpio: number // GPIO接口号
+  url: string // 上报URL
 }
 
 // 传感器
 let sensor: Sensor | null
 
-// 读取传感器数据
+/**
+ * 读取并上报传感器数据
+ * 
+ * TODO 若上报失败，存储为本地数据以备补录；后续补录完成后，应清理相应本地数据。
+ * 
+ * @param sensor 传感器实例
+ * @returns { void }
+ */
 const reportSensor = async (sensor: Sensor): Promise<void> => {
   // console.log('reportSensor: ', process.env, sensor)
 
@@ -32,9 +39,9 @@ const reportSensor = async (sensor: Sensor): Promise<void> => {
   const readings = await dht.read(sensor.model, sensor.gpio)
   if (readings.message?.length > 0) return
 
-  // 上报数据
-  if (sensor.url.length === 0) return
+  let shouldRetry: boolean = false // 是否需进行重试/数据补录
 
+  // 上报数据
   const params = {
     content: JSON.stringify({
       timestamp: readings.timestamp,
@@ -64,11 +71,25 @@ const reportSensor = async (sensor: Sensor): Promise<void> => {
     )
 
     result = await response.json()
+    // console.log(result)
 
-    console.log(result)
+    // TODO 可能存在需根据上报结果的相应参数，安排数据补录的业务场景
   } catch (error) {
-    console.error('reportSensor error: ', error)
+    // console.error('reportSensor error: ', error)
+
+    shouldRetry = true
   }
+
+  shouldRetry && retryReport(readings)
+}
+
+/**
+ * TODO 计划数据补录
+ * 
+ * @param readings 传感器读数
+ */
+const retryReport = (readings: any): void => {
+  console.log('retryReport: ', readings)
 }
 
 /**
