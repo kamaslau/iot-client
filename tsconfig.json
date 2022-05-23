@@ -1,5 +1,5 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
+  "extends": "@tsconfig/node18/tsconfig.json",
   "include": ["src/**/*", "tests/**/*"],
   "compilerOptions": {
     "typeRoots": ["node_modules/@types", "types"],

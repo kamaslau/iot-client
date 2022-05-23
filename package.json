@@ -9,7 +9,7 @@
     "email": "kamaslau@outlook.com"
   },
   "engines": {
-    "node": "^16 || >=16"
+    "node": "^18 || >=18"
   },
   "main": "dist/app.js",
   "scripts": {
@@ -22,11 +22,10 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "node-cron": "^3.0.0",
-    "node-dht-sensor": "^0.4.3",
-    "node-fetch": "^2.6.7"
+    "node-dht-sensor": "^0.4.3"
   },
   "devDependencies": {
-    "@tsconfig/node16": "latest",
+    "@tsconfig/node18": "latest",
     "@types/node": "latest"
   }
 }

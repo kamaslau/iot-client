@@ -1,5 +1,3 @@
-'use strict'
-
 import cronjob from './cronjob'
 import dotenv from 'dotenv'
 
