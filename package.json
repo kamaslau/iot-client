@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "dotenv": "^16.0.1",
-    "node-cron": "^3.0.0",
+    "node-cron": "^3.0.1",
     "node-dht-sensor": "^0.4.3"
   },
   "devDependencies": {
