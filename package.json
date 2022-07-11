@@ -13,16 +13,17 @@
   },
   "main": "dist/app.js",
   "scripts": {
-    "dev": "cross-env nodemon",
     "format": "ts-standard --fix src/**/*.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node dist/app.js"
+    "start": "NODE_ENV=production node dist/app.js",
+    "start:dev": "cross-env nodemon"
   },
   "dependencies": {
     "dotenv": "^16.0.1",
     "node-cron": "^3.0.1",
-    "node-dht-sensor": "^0.4.3"
+    "node-dht-sensor": "^0.4.3",
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
     "@tsconfig/node18": "latest",

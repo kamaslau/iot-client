@@ -6,11 +6,13 @@ specifiers:
   dotenv: ^16.0.1
   node-cron: ^3.0.1
   node-dht-sensor: ^0.4.3
+  node-fetch: ^2.6.7
 
 dependencies:
   dotenv: 16.0.1
   node-cron: 3.0.1
   node-dht-sensor: 0.4.3
+  node-fetch: 2.6.7
 
 devDependencies:
   '@tsconfig/node18': 1.0.1
@@ -45,4 +47,31 @@ packages:
     requiresBuild: true
     dependencies:
       node-addon-api: 1.7.2
+    dev: false
+
+  /node-fetch/2.6.7:
+    resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
+    engines: {node: 4.x || >=6.0.0}
+    peerDependencies:
+      encoding: ^0.1.0
+    peerDependenciesMeta:
+      encoding:
+        optional: true
+    dependencies:
+      whatwg-url: 5.0.0
+    dev: false
+
+  /tr46/0.0.3:
+    resolution: {integrity: sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=}
+    dev: false
+
+  /webidl-conversions/3.0.1:
+    resolution: {integrity: sha1-JFNCdeKnvGvnvIZhHMFq4KVlSHE=}
+    dev: false
+
+  /whatwg-url/5.0.0:
+    resolution: {integrity: sha1-lmRU6HZUYuN2RNNib2dCzotwll0=}
+    dependencies:
+      tr46: 0.0.3
+      webidl-conversions: 3.0.1
     dev: false

@@ -6,6 +6,7 @@
 import { getTimeString } from './utils'
 import { dht } from './sensor'
 import nodeCron from 'node-cron'
+import fetch from 'node-fetch'
 
 import { URLSearchParams } from 'url'
 
