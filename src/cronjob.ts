@@ -37,7 +37,7 @@ const reportSensor = async (sensor: Sensor): Promise<void> => {
 
   // 读取数据
   const readings = await dht.read(sensor.model, sensor.gpio)
-  if (readings.message?.length > 0) return
+  if (typeof readings.message === 'string') return
 
   let shouldRetry: boolean = false // 是否需进行重试/数据补录
 
@@ -82,8 +82,8 @@ const reportSensor = async (sensor: Sensor): Promise<void> => {
 
   // 尝试存入InfluxDB
   try {
-    influxDB.insertOne('temp', readings.data.temperature)
-    influxDB.insertOne('hum', readings.data.temperature)
+    influxDB.insertOne('temp', readings.data.temp)
+    influxDB.insertOne('hum', readings.data.hum)
   } catch (error) {
     console.error('Failed to insert InfluxDB Points: ', error)
   }
