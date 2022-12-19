@@ -74,12 +74,18 @@ const reportSensor = async (sensor: Sensor): Promise<void> => {
     // console.log(result)
 
     // TODO 可能存在需根据上报结果的相应参数，安排数据补录的业务场景
-    influxDB.insertOne('temp', readings.data.temperature)
-    influxDB.insertOne('hum', readings.data.temperature)
   } catch (error) {
     // console.error('reportSensor error: ', error)
 
     shouldRetry = true
+  }
+
+  // 尝试存入InfluxDB
+  try {
+    influxDB.insertOne('temp', readings.data.temperature)
+    influxDB.insertOne('hum', readings.data.temperature)
+  } catch (error) {
+    console.error('Failed to insert InfluxDB Points: ', error)
   }
 
   shouldRetry && retryReport(readings)
