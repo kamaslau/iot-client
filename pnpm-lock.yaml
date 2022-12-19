@@ -1,35 +1,41 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@influxdata/influxdb-client': ^1.33.0
   '@tsconfig/node18': latest
   '@types/node': latest
-  dotenv: ^16.0.1
-  node-cron: ^3.0.1
+  dotenv: ^16.0.3
+  node-cron: ^3.0.2
   node-dht-sensor: ^0.4.3
   node-fetch: ^2.6.7
 
 dependencies:
-  dotenv: 16.0.1
-  node-cron: 3.0.1
+  '@influxdata/influxdb-client': 1.33.0
+  dotenv: 16.0.3
+  node-cron: 3.0.2
   node-dht-sensor: 0.4.3
   node-fetch: 2.6.7
 
 devDependencies:
   '@tsconfig/node18': 1.0.1
-  '@types/node': 18.0.0
+  '@types/node': 18.11.17
 
 packages:
+
+  /@influxdata/influxdb-client/1.33.0:
+    resolution: {integrity: sha512-ctICXZqq4Nff44Q5Pk3I63/jpZGTZ9VPr8dPJ78eujEHrTjz1M6mlNnXuF+TdqFfzlpmjxo4TcYEyDOPK+SQbQ==}
+    dev: false
 
   /@tsconfig/node18/1.0.1:
     resolution: {integrity: sha512-sNFeK6X2ATlhlvzyH4kKYQlfHXE2f2/wxtB9ClvYXevWpmwkUT7VaSrjIN9E76Qebz8qP5JOJJ9jD3QoD/Z9TA==}
     dev: true
 
-  /@types/node/18.0.0:
-    resolution: {integrity: sha512-cHlGmko4gWLVI27cGJntjs/Sj8th9aYwplmZFwmmgYQQvL5NUsgVJG7OddLvNfLqYS31KFN0s3qlaD9qCaxACA==}
+  /@types/node/18.11.17:
+    resolution: {integrity: sha512-HJSUJmni4BeDHhfzn6nF0sVmd1SMezP7/4F0Lq+aXzmp2xm9O7WXrUtHW/CHlYVtZUbByEvWidHqRtcJXGF2Ng==}
     dev: true
 
-  /dotenv/16.0.1:
-    resolution: {integrity: sha512-1K6hR6wtk2FviQ4kEiSjFiH5rpzEVi8WW0x96aztHVMhEspNpc4DVOUTEHtEva5VThQ8IaBX1Pe4gSzpVVUsKQ==}
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
     dev: false
 
@@ -37,9 +43,11 @@ packages:
     resolution: {integrity: sha512-ibPK3iA+vaY1eEjESkQkM0BbCqFOaZMiXRTtdB0u7b4djtY6JnsjvPdUHVMg6xQt3B8fpTTWHI9A+ADjM9frzg==}
     dev: false
 
-  /node-cron/3.0.1:
-    resolution: {integrity: sha512-RAWZTNn2M5KDIUV/389UX0EXsqvdFAwc9QwHQceh0Ga56dygqSRthqIjwpgZsoDspHGt2rkHdk9Z4RgfPMdALw==}
+  /node-cron/3.0.2:
+    resolution: {integrity: sha512-iP8l0yGlNpE0e6q1o185yOApANRe47UPbLf4YxfbiNHt/RU5eBcGB/e0oudruheSf+LQeDMezqC5BVAb5wwRcQ==}
     engines: {node: '>=6.0.0'}
+    dependencies:
+      uuid: 8.3.2
     dev: false
 
   /node-dht-sensor/0.4.3:
@@ -63,6 +71,11 @@ packages:
 
   /tr46/0.0.3:
     resolution: {integrity: sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=}
+    dev: false
+
+  /uuid/8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
     dev: false
 
   /webidl-conversions/3.0.1:
