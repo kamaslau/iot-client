@@ -82,6 +82,7 @@ const reportSensor = async (sensor: Sensor): Promise<void> => {
 
   // 尝试存入InfluxDB
   try {
+    influxDB.connect()
     influxDB.insertOne('temp', readings.data.temp)
     influxDB.insertOne('hum', readings.data.hum)
   } catch (error) {
