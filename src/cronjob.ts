@@ -3,11 +3,14 @@
  *
  * https://www.npmjs.com/package/node-cron
  */
+// External
+import { URLSearchParams } from 'node:url'
 import { getTimeString } from './utils'
-import { dht } from './sensor'
 import nodeCron from 'node-cron'
 import fetch from 'node-fetch'
-import { URLSearchParams } from 'node:url'
+
+// Local
+import { dht } from './sensor'
 import influxDB from './influxdb'
 
 // 控制台输出前缀
@@ -85,6 +88,7 @@ const reportSensor = async (sensor: Sensor): Promise<void> => {
     influxDB.connect()
     influxDB.insertOne('temp', readings.data.temp)
     influxDB.insertOne('hum', readings.data.hum)
+    await influxDB.disconnect()
   } catch (error) {
     console.error('Failed to insert InfluxDB Points: ', error)
   }
@@ -125,9 +129,9 @@ const startAll = async (): Promise<void> => {
   // 实例化传感器对象
   sensor = {
     id: process.env.SENSOR_ID ?? null,
-    model: Number(process.env.SENSOR_MODEL ?? 11),
-    gpio: Number(process.env.SENSOR_GPIO ?? 4),
-    url: process.env.SENSOR_REPORT_URL ?? ''
+    model: Number(process.env.SENSOR_MODEL),
+    gpio: Number(process.env.SENSOR_GPIO),
+    url: process.env.SENSOR_REPORT_URL as string
   }
 
   try {
