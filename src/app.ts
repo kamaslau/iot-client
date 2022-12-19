@@ -1,5 +1,6 @@
 import cronjob from './cronjob'
-import dotenv from 'dotenv'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 // 在控制台中标识程序起始
 console.log(
@@ -16,4 +17,4 @@ dotenv.config()
 /**
  * 计划任务
  */
- cronjob.startAll()
+cronjob.startAll()
