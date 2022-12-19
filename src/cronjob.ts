@@ -88,7 +88,6 @@ const reportSensor = async (sensor: Sensor): Promise<void> => {
     influxDB.connect()
     influxDB.insertOne('temp', readings.data.temp)
     influxDB.insertOne('hum', readings.data.hum)
-    await influxDB.disconnect()
   } catch (error) {
     console.error('Failed to insert InfluxDB Points: ', error)
   }
