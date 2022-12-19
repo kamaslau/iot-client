@@ -15,7 +15,7 @@ interface sensorResponse {
 }
 
 // 读取传感器数据
-const read = async (model: number = 11, gpio: number = 4): Promise<any> => {
+const read = async (model: number = 22, gpio: number = 4): Promise<any> => {
   const result: sensorResponse = {
     time: new Date().toLocaleString(),
     timestamp: Date.now()

@@ -7,8 +7,8 @@ import { getTimeString } from './utils'
 import { dht } from './sensor'
 import nodeCron from 'node-cron'
 import fetch from 'node-fetch'
-import { InfluxDB, Point } from '@influxdata/influxdb-client'
 import { URLSearchParams } from 'node:url'
+import influxDB from './influxdb'
 
 // 控制台输出前缀
 const consolePrefix = '⏱ cron job: '
@@ -74,9 +74,8 @@ const reportSensor = async (sensor: Sensor): Promise<void> => {
     // console.log(result)
 
     // TODO 可能存在需根据上报结果的相应参数，安排数据补录的业务场景
-    const token = process.env.INFLUXDB_TOKEN ?? ''
-    const url = process.env.INFLUXDB_URL ?? ''
-    const client = new InfluxDB({url, token})
+    influxDB.insertOne('temp,', readings.data.temperature)
+    influxDB.insertOne('hum,', readings.data.temperature)
   } catch (error) {
     // console.error('reportSensor error: ', error)
 
