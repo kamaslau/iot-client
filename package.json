@@ -20,7 +20,7 @@
     "start:dev": "cross-env nodemon"
   },
   "dependencies": {
-    "@influxdata/influxdb-client": "^1.33.0",
+    "@influxdata/influxdb-client": "^1.33.2",
     "dotenv": "^16.0.3",
     "node-cron": "^3.0.2",
     "node-dht-sensor": "^0.4.3",
