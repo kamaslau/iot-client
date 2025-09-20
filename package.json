@@ -3,31 +3,40 @@
   "license": "UNLICENSED",
   "private": true,
   "version": "0.0.1",
-  "description": "物联网传感器数据汇总与通信客户端",
+  "description": "物联网设备数据读取与通信上报客户端，以传感器（DHT11/22）进行演示",
   "author": {
     "name": "Lau, Kamas",
     "email": "kamaslau@outlook.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamaslau/iot-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kamaslau/iot-client/issues"
+  },
+  "homepage": "https://github.com/kamaslau/iot-client#readme",
   "engines": {
-    "node": "^18 || >=18"
+    "node": "^24 || >=22"
   },
   "main": "dist/app.js",
   "scripts": {
     "format": "ts-standard --fix src/**/*.ts",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node dist/app.js",
+    "test": "node --test",
+    "start": "NODE_ENV=production node --env-file=.env dist/app.js",
     "start:dev": "cross-env nodemon"
   },
   "dependencies": {
-    "@influxdata/influxdb-client": "^1.33.2",
-    "dotenv": "^16.0.3",
+    "@influxdata/influxdb-client": "^1.35.0",
     "node-cron": "^3.0.2",
-    "node-dht-sensor": "^0.4.3",
-    "node-fetch": "^2.6.7"
+    "node-dht-sensor": "^0.4.5"
   },
   "devDependencies": {
-    "@tsconfig/node18": "latest",
-    "@types/node": "latest"
+    "@tsconfig/node24": "^24.0.1",
+    "@types/node": "^24.5.2",
+    "cross-env": "^10.0.0",
+    "nodemon": "^3.1.10",
+    "tsimp": "^2.0.12"
   }
 }

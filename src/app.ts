@@ -1,8 +1,5 @@
 import cronjob from './cronjob'
-import * as dotenv from 'dotenv'
 
-// 载入.env环境配置文件
-dotenv.config()
 // console.log('process.env: ', process.env)
 
 // 在控制台中标识程序起始

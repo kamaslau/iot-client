@@ -7,7 +7,6 @@
 import { URLSearchParams } from 'node:url'
 import { getTimeString } from './utils'
 import nodeCron from 'node-cron'
-import fetch from 'node-fetch'
 
 // Local
 import { dht } from './sensor'
