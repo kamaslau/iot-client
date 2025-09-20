@@ -60,7 +60,7 @@ const openQueryClient = () => {
  * @param fieldValue 
  * @param fieldName 
  */
-const insertOne = (measurement, fieldValue, fieldName = 'value') => {
+const insertOne = (measurement: string, fieldValue: number, fieldName = 'value') => {
   const point = new Point(measurement).floatField(fieldName, fieldValue)
 
   openWriteClient()
