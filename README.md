@@ -9,7 +9,7 @@ Connect GPIO4 pin with sensor data output, together with 3.3V and GND pins.
 sudo sh -c 'echo "dtoverlay=dht11,gpiopin=4" >> /boot/firmware/config.txt'
 sudo reboot
 
-# Init .env file, modify as you need
+# Init .env file, modify and use your own InfluxDB Cloud tokens
 cp .env.sample .env
 
 # Do reading
