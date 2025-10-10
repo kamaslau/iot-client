@@ -1,8 +1,0 @@
-{
-  "env": {
-    "NODE_ENV": "development"
-  },
-  "exec": "node --env-file=.env --import=tsimp/import src/app.ts",
-  "ext": "ts",
-  "watch": ["src", "types", ".env", ".env.local", "tsconfig.json"]
-}
